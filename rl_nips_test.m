@@ -53,7 +53,7 @@ snr = [1.122018454301963	1.258925411794167	1.412537544622754	1.584893192461114	1
 % R = cfgLDPCEnc.NumInformationBits / cfgLDPCEnc.BlockLength;
 R = 1/2;
 % R = 1/2 % for mackey
-sigma = sqrt(1/(2*R*snr(9)));
+sigma = sqrt(1/(2*R*snr(10)));
 
 for i = 1:numSamples
     rx = 1 +  sigma*randn(1,n);
@@ -98,7 +98,7 @@ M = 6;
 Q = RELDEC_CPU_MAIN(L_set, H, CN_neighbors, VN_neighbors, clusters, params,codebook, partition);
 
 
-save("Q_mackay_rl_nips_snr_4.5.mat","Q","codebook","partition");
+save("Q_mackay_rl_nips_snr_5.mat","Q","codebook","partition");
 disp('Training completed');
 
 

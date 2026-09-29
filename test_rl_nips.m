@@ -78,6 +78,22 @@ load("Q_mackay_rl_nips_snr_3.mat")
 Q1{6} = Q;
 codebook1{6} = codebook;
 partition1{6} = partition;
+load("Q_mackay_rl_nips_snr_3.5.mat")
+Q1{7} = Q;
+codebook1{7} = codebook;
+partition1{7} = partition;
+load("Q_mackay_rl_nips_snr_4.mat")
+Q1{8} = Q;
+codebook1{8} = codebook;
+partition1{8} = partition;
+load("Q_mackay_rl_nips_snr_4.5.mat")
+Q1{9} = Q;
+codebook1{9} = codebook;
+partition1{9} = partition;
+load("Q_mackay_rl_nips_snr_5.mat")
+Q1{10} = Q;
+codebook1{10} = codebook;
+partition1{10} = partition;
 
 %%
 
@@ -123,13 +139,13 @@ params.maxStates = 4;
 % nRowsPerLayer = cfgLDPCDec.NumRowsPerLayer;
 % SNR_db = [0 1 2 3 4 5 6];
 % SNR_db = [-3 -2 -1 0 1];
-SNR_db = [0.5 1 1.5 2 2.5 3];
+SNR_db = [0.5 1 1.5 2 2.5 3 3.5 4 4.5 5];
 % SNR
 SNR = 10.^(SNR_db/10);
-maxnumiter = 5;
+maxnumiter = 1;
 % R = cfgLDPCEnc.NumInformationBits / cfgLDPCEnc.BlockLength;
 R = 1/2;
-for i = 6
+for i = 1 : length(SNR)
     current_state = zeros(m,1);
     parfor j = 1 : 100000
         % bits = zeros(cfgLDPCEnc.NumInformationBits,1);
