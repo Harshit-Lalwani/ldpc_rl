@@ -23,7 +23,7 @@ params.lmax = 50;
 params.maxlevels = 22;   % Quantization Level 32 -> 5 bits
 
 
-numSamples = 90000;
+numSamples = 20000;
 n = length(H);
 %% ---------------- PRECOMPUTE GRAPH ----------------
 CN_neighbors = cell(m,1);
@@ -50,7 +50,7 @@ snr = [1	1.25892541179417	1.58489319246111	1.99526231496888	2.51188643150958];
 sigma = 1;
 
 for i = 1:numSamples
-    rx = 1*sqrt(snr(1)) + sigma * randn(1,n);
+    rx = 1*sqrt(snr(3)) + sigma * randn(1,n);
     L_set{i} = 2*rx/(sigma^2);
 end
 
@@ -58,7 +58,7 @@ end
 Q = RELDEC_CPU_MAIN(L_set, H, CN_neighbors, VN_neighbors, clusters, params);
 
 
-save("Q_wran_0_tanh_mi.mat","Q")
+save("Q_wran_3_tanh_mi.mat","Q")
 disp('Training completed');
 
 
@@ -122,7 +122,7 @@ for idx = 1:N
         %% -------- calculating current mutual inforamtion of the cluster --------
         idx2 = CN_neighbors{a};          
         x = L(idx2);
-        mi_prev = mean(Jfun(x));
+        mi_prev = mean(Jfun(sqrt(max(x,0))));
         %% -------- CN → VN (exact BP) --------
         idx2 = CN_neighbors{a};          
         vals2 = L(idx2)- res{a};
@@ -133,7 +133,7 @@ for idx = 1:N
         %% -------- calculating current mutual inforamtion of the cluster --------
         idx2 = CN_neighbors{a};          
         x = L(idx2);
-        mi_new = mean(Jfun(x));
+        mi_new = mean(Jfun(sqrt(max(x,0))));
         %% -------- NEW STATE --------
         current_state_updated = zeros(m, 1);
         s_new = zeros(m,1);

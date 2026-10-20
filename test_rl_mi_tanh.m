@@ -39,7 +39,10 @@ blocksize_wran = 16;
 
 load("Q_wran_0_tanh_mi.mat","Q")
 Q1{1} = Q;
-
+load("Q_wran_2_tanh_mi.mat","Q")
+Q1{3} = Q;
+load("Q_wran_3_tanh_mi.mat","Q")
+Q1{4} = Q;
 
 % load("Q_P_520_snr_neg3.mat","Q")
 % Q1{1} = Q;
@@ -74,10 +77,10 @@ SNR_db = [0 1 2 3 4 5 6];
 SNR = 10.^(SNR_db/10);
 maxnumiter = 5;
 R = cfgLDPCEnc.NumInformationBits / cfgLDPCEnc.BlockLength;
-for i = 1 : 6
+for i = 3 : 4
     current_state = zeros(m,params.maxStateBits);
     i
-    parfor j = 1 : 10000
+    parfor j = 1 : 100000
         % bits = zeros(cfgLDPCEnc.NumInformationBits,1);
         % codeword = ldpcEncode(bits,cfgLDPCEnc);
         % bits = zeros(48,1);
@@ -147,7 +150,7 @@ for i = 1 : 6
             % ---------- Q LOOKUP ----------
             vals1 = zeros(1, m);
             for f = 1:m
-                vals1(f) = Q1{1}(s(f), f);
+                vals1(f) = Q1{i}(s(f), f);
             end
 
             % ---------- CLUSTER AGGREGATION ----------
