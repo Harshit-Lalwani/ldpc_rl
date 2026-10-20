@@ -32,7 +32,7 @@ blocksize = 1 ;
 %% ---------------- PARAMETERS ----------------
 params.alpha = 0.1;
 params.beta = 0.9;
-params.epsilon = 0.6;   % PAPER-PROTOCOL: epsilon 0.6
+params.epsilon = 0.1;
 params.lmax = 50;       % (already the paper's l_max: learning steps per episode)
 
 params.maxlevels = 40;   % PAPER-PROTOCOL: 40 tanh bins of width 0.05
