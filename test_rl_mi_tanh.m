@@ -131,7 +131,7 @@ for i = 1 : 6
             current_state(v) = mean(tanh((vals)));
 
             % Initilization of states for Episode
-            s(v) = min(max(floor((current_state(i) + 1)/2 * 22) + 1, 1), 22);
+            s(v) = min(max(floor((current_state(v) + 1)/2 * 22) + 1, 1), 22);
 
         end
 
@@ -189,7 +189,7 @@ for i = 1 : 6
                 current_state(v) = mean(tanh((vals)));
 
                 % Initilization of states for Episode
-                s(v) = min(max(floor((current_state(i) + 1)/2 * 22) + 1, 1), 22);
+                s(v) = min(max(floor((current_state(v) + 1)/2 * 22) + 1, 1), 22);
 
             end
             
